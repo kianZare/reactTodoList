@@ -125,6 +125,7 @@ select{
 .completed {
   text-decoration: line-through;
   opacity: 0.5;
+  color: #ff6f47;
 }
 
 .todo-item{
@@ -142,4 +143,11 @@ select{
 }
 .complete-btn{
   background: rgb(11,212,162);
+}
+
+.error{
+  color: rgb(37, 20, 20);
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
 }

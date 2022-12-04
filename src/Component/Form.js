@@ -1,16 +1,27 @@
 import React from 'react';
 
-const form = ({setInputText, todos, setTodos, inputText}) =>{
+const Form = ({setInputText, todos, setTodos, inputText, setStatus, setErrorText}) => {
+
     const inputTextHandler = (e) => {
         setInputText(e.target.value);
     };
+
     const submitTodoHandler = (e) =>{
         e.preventDefault();
-        setTodos([
-            ...todos,
-            {text: inputText, completed: false, id: Date.now()}
-        ]);
-        setInputText("");
+        if(inputText){
+            setTodos([
+                ...todos,
+                {text: inputText, completed: false, id: Date.now()}
+            ]);
+            setInputText("");
+            setErrorText("");
+    } else {
+        setErrorText("Please Enter a task")
+    }
+    };
+
+    const statusHandler = (e) => {
+        setStatus(e.target.value);
     }
     return(
         <form>
@@ -19,7 +30,7 @@ const form = ({setInputText, todos, setTodos, inputText}) =>{
                 <i className="fa-solid fa-square-plus"></i>
             </button>
             <div className="select">
-                <select name="todos" className="filter-todo">
+                <select onChange={statusHandler} name="todos" className="filter-todo">
                     <option value="all">All</option>
                     <option value="completed">Completed</option>
                     <option value="uncompleted">Uncompleted</option>
@@ -29,4 +40,4 @@ const form = ({setInputText, todos, setTodos, inputText}) =>{
     );
 };
 
-export default form;
+export default Form;
